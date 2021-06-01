@@ -1,0 +1,15 @@
+{
+  "name": "axe-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "ana.karon@gmail.com",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@axe-core/puppeteer": "^4.1.1",
+    "json-2-csv": "^3.11.0",
+    "puppeteer": "^8.0.0"
+  }
+}
