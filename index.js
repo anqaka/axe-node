@@ -21,7 +21,7 @@ async function testArray(urlsArray) {
   }))
   if (finalResults.length) {
     writeToCsv(finalResults, `${config.fileName}_${date}`)
-    writeData(JSON.stringify(finalResults), `results/array-test-${date}`, 'json')
+    writeData(JSON.stringify(finalResults), `${config.fileName}_${date}`, 'json')
   }
 }
 
