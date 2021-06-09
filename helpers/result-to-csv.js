@@ -2,11 +2,7 @@ const converter = require('json-2-csv')
 const writeData = require('./write-data')
 
 function writeToCsv (issuesArray, fileName) {
-  const options = {
-    expandArrayObjects: true,
-    unwindArrays: true
-  }
-  converter.json2csvAsync(issuesArray, options)
+  converter.json2csvAsync(issuesArray)
     .then((csv) => {
         writeData(csv, fileName, 'csv')
       })

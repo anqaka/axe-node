@@ -1,47 +1,28 @@
-const { AxePuppeteer } = require('@axe-core/puppeteer');
-const puppeteer = require('puppeteer');
-const writeData = require('./helpers/write-data');
-const prepareIssues = require('./helpers/prepare-issues');
+const axeTest = require('./helpers/axe-test');
 const config = require('./config');
+const prepareIssues = require('./helpers/prepare-issues');
+const writeData = require('./helpers/write-data');
 const writeToCsv = require('./helpers/result-to-csv');
 
 const date = new Date().toISOString().slice(0, 16).replace(/\D/g,'')
+let finalResults = []
 
-
-let axeTest = async () => {
-  const browser = await puppeteer.launch({
-    args: [`--window-size=${config.viewport.width},${config.viewport.height}`],
-    defaultViewport: null
-  });
-  const page = await browser.newPage();
-  await page.setBypassCSP(true);
-  await page._client.send('Emulation.clearDeviceMetricsOverride');
-
-  // await page.goto(config.testUrl);
-  await page.goto(config.testUrl, {
-    waitUntil: 'networkidle0',
-  });
-
-  let results;
-  // TO DO: add validation
-  results = await new AxePuppeteer(page)
-    .options(config.axeConfig)
-    .analyze();
-
-  await page.close();
-  await browser.close();
-  return results;
+const testSinglePage  = async (url) => {
+  const axeResponse = await axeTest(url);
+  const issueArray = await prepareIssues(axeResponse, url);
+  finalResults = [...finalResults, ...issueArray];
+  return finalResults;
 }
 
-axeTest().then((data) => {
-  const axeResults = data
-  writeData(JSON.stringify(axeResults), `${config.fileName}_${date}`, 'json');
-  if (data.violations.length) {
-      const resultsArray = prepareIssues(data.violations)
-      writeToCsv(resultsArray, `${config.fileName}_${date}`)
-  } else {
-      console.log('No violation found');
+async function testArray(urlsArray) {
+
+  await Promise.all(urlsArray.map(async (item) => {
+    await testSinglePage(item);
+  }))
+  if (finalResults.length) {
+    writeToCsv(finalResults, `${config.fileName}_${date}`)
+    writeData(JSON.stringify(finalResults), `results/array-test-${date}`, 'json')
   }
-}).catch((err) => {
-  console.log(err);
-})
+}
+
+testArray(config.pages);
