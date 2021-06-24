@@ -1,5 +1,5 @@
-import { InitConfig } from 'axe-node/src/types/init-config.type';
-import { FinalConfig } from 'axe-node/src/types/final-config.type';
+import { InitConfig } from './types/init-config.type';
+import { FinalConfig } from './types/final-config.type';
 import * as path from 'path';
 import axeTest from './helpers/axe-test';
 import getConfig from './helpers/get-config';
@@ -7,8 +7,8 @@ import prepareIssues from './helpers/prepare-issues';
 import writeData from './helpers/write-data';
 // const writeToCsv    = require('./helpers/result-to-csv');
 
-function test (customConfig:InitConfig) {
-  console.log('eluwina');
+const mainTest = (customConfig:InitConfig):Promise<any[]> | [] => {
+  console.log('Hi my favorites accessibility freaks! XD');
   const date = new Date().toISOString().slice(0, 16).replace(/\D/g, '');
   const config:FinalConfig = getConfig(customConfig);
   console.log(config);
@@ -40,16 +40,16 @@ function test (customConfig:InitConfig) {
         if (finalResults.length) {
           // writeToCsv(finalResults, resultsFile)
           writeData(JSON.stringify(finalResults), resultsFile, 'json');
-          return finalResults;
         }
       } else {
         console.error('No urls provided :(');
       }
+      return finalResults
     } catch (error:any) {
       throw new Error(error);
     }
   }
-  testArray(config.pages);
+  return testArray(config.pages);
 };
 
-export { test as axeTest };
+export default mainTest;

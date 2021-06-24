@@ -1,4 +1,4 @@
-import { AnyObject } from 'axe-node/src/types/any-object.type';
+import { AnyObject } from './../types/any-object.type';
 type IssueObject = AnyObject & {
   nodes: any[]
 }

@@ -1,4 +1,4 @@
-import { AxeConfig } from 'axe-node/src/types/axe-config.type'
+import { AxeConfig } from './axe-config.type'
 export type InitConfig = {
   pages: string[] | [];
   fileName?: string;

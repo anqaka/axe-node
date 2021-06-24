@@ -55,19 +55,7 @@ basicAuth: {
 }
 ```
 
-### Command line options
-
-1. Pages comma separated using command line:
-
-`--pages="https://google.com/,https://github.com/"`
-
-2. Custom config file path:
-`--config="axe.json"`
-
-path is relative to your working directory and is in `json` format.
-
 Config hierarchy:
-- command line
 - custom config
 - default config
 

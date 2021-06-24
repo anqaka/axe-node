@@ -1,6 +1,6 @@
 import defaultConfig from '../config';
-import { InitConfig } from 'axe-node/src/types/init-config.type';
-import { FinalConfig } from 'axe-node/src/types/final-config.type';
+import { InitConfig } from './../types/init-config.type';
+import { FinalConfig } from './../types/final-config.type';
 
 const getConfig = (customConfig:InitConfig):FinalConfig => {
 

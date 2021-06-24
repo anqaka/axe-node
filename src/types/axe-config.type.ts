@@ -1,4 +1,4 @@
-import { AnyObject } from 'axe-node/src/types/any-object.type';
+import { AnyObject } from './any-object.type';
 export type AxeConfig = {
   reporter: string;
   branding?: {

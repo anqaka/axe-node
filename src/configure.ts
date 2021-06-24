@@ -1,8 +1,8 @@
 import * as path from 'path';
 import * as  fs from 'fs';
 import getConfig from'./helpers/get-config';
-import { InitConfig } from 'axe-node/src/types/init-config.type';
-import { FinalConfig } from 'axe-node/src/types/final-config.type';
+import { InitConfig } from './types/init-config.type';
+import { FinalConfig } from './types/final-config.type';
 
 function configure (customConfig:InitConfig) {
   const config:FinalConfig = getConfig(customConfig);
