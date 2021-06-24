@@ -11,6 +11,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "yarn run build -- -w",
+    "postinstall": "yarn run build",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json"
   },
