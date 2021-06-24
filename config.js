@@ -1,6 +1,8 @@
 const config = {
-  testUrl: '',
-  fileName: 'results/tested-file',
+  pages: [],
+  fileName: 'tested-file',
+  resultsDir: 'axe-results',
+  basicAuth: null,
   axeConfig: {
     reporter: 'v2'
   },

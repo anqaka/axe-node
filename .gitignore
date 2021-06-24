@@ -1,4 +1,6 @@
-config.js
+axe.config.json
 node_modules/
 results/*
 !results/.gitkeep
+axe-results/*
+!axe-results/.gitkeep
