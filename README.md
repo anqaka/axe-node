@@ -6,7 +6,7 @@ Simple node app to run accessibility tests with [axe-core](https://github.com/de
 
 Install dependencies using `yarn` command.
 
-## COnfiguration
+## Configuration
 
 1. Run `yarn axe:configure` command - it will create `resultsDir` (by default `axe-results`) and custom config file - `axe.config.json` in root of your working directory
 2. Provide urls to `pages` array in your custom config files or pass urls using command line arguments.
