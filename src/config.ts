@@ -1,5 +1,6 @@
 const config = {
   pages: [],
+  title: 'test title',
   fileName: 'tested-file',
   resultsDir: 'axe-results',
   basicAuth: null,

@@ -1,17 +1,16 @@
-import { AnyObject } from './../types/any-object.type';
-type IssueObject = AnyObject & {
-  nodes: any[]
-}
-const prepareIssues = (axeResponse: AnyObject, url: string) => {
-  try {
-    const noNodes = ({ nodes, ...rest }) => rest;
-    console.log('noNodes', noNodes);
-    let issuesArray: any[] = [];
-    const issues = axeResponse.violations;
+import { MetadataObj } from './../types/metadata-obj.type';
+import { ResponseObj } from './../types/response-obj.type';
+import { IssueObj } from './../types/issue-obj.type';
+const noNodes = ({ nodes, ...rest }) => rest;
 
-    if (issues.length) {
-      issues.forEach((item:IssueObject) => {
-        item.nodes.forEach((element:AnyObject, index:number) => {
+const prepareIssues = (axeResponse: ResponseObj, url: string) => {
+  try {
+    const axeCallback = axeResponse
+    let issuesArray:any[] = axeCallback.violations;
+
+    if (issuesArray.length) {
+      issuesArray.forEach((item: IssueObj) => {
+        item.nodes.forEach((element:MetadataObj, index:number) => {
           const singleIssue = {
             uid: `${item.id}-${index}`,
             testedUrl: url,

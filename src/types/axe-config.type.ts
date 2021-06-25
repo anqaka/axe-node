@@ -1,4 +1,4 @@
-import { AnyObject } from './any-object.type';
+import { MetadataObj } from './metadata-obj.type';
 export type AxeConfig = {
   reporter: string;
   branding?: {
@@ -7,8 +7,8 @@ export type AxeConfig = {
   };
   checks?: any[];
   rules?: any[];
-  standards?: AnyObject;
-  locale?: AnyObject;
+  standards?: MetadataObj;
+  locale?: MetadataObj;
   axeVersion?: string;
   disableOtherRules?: boolean;
   noHtml?: boolean;

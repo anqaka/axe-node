@@ -1,3 +1,5 @@
+import { ResponseObj } from 'types/response-obj.type';
+
 const puppeteer = require('puppeteer');
 const { AxePuppeteer } = require('@axe-core/puppeteer');
 
@@ -23,7 +25,7 @@ const axeTest = async (url: string, axeConfig) => {
       timeout: 0,
     });
 
-    let results;
+    let results:ResponseObj;
     // TO DO: add validation
     results = await new AxePuppeteer(page).options(axeConfig.axeConfig).analyze();
 
