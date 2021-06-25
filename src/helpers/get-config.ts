@@ -1,4 +1,4 @@
-import defaultConfig from '../config';
+import defaultConfig from './../config';
 import { InitConfig } from './../types/init-config.type';
 import { FinalConfig } from './../types/final-config.type';
 

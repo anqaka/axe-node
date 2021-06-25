@@ -10,4 +10,5 @@ export type InitConfig = {
     width: string;
     height: string;
   };
+  selector?: string | null;
 }

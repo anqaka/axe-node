@@ -6,11 +6,13 @@ const config = {
   basicAuth: null,
   axeConfig: {
     reporter: 'v2',
+    noHtml: true
   },
   viewport: {
     width: '1920',
     height: '1080',
   },
+  selectior: null,
 };
 
 export default config;
