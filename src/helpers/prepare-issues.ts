@@ -2,29 +2,28 @@ import { MetadataObj } from './../types/metadata-obj.type';
 import { IssueObj } from './../types/issue-obj.type';
 
 const prepareIssues = (violations: any[], url: string) => {
-  const noNodes = ({ nodes, ...rest }) => rest;
-  let issuesArray:any[] = violations;
   try {
+    const noNodes = ({ nodes, ...rest }) => rest,
+      issuesArray: any[] = violations,
+      finalArray: any[] = [];
     if (issuesArray.length) {
       issuesArray.forEach((item: IssueObj) => {
-        let singleMain = {
-          id: `${item.id}`,
-          testedUrl: url,
-          status: 'TO DO',
-          ...noNodes(item),
-        }
-        item.nodes.forEach((element:MetadataObj, index:number) => {
-          let singleNodes = {
-            ...element,
+        item.nodes.forEach((element: MetadataObj, index: number) => {
+          const singleNode = {
             uid: `${item.id}-${index}`,
+            id: item.id,
+            ...element,
+            ...noNodes(item),
+            testedUrl: url,
+            status: 'TO DO',
           };
-          const singleIssue = Object.assign({}, singleMain, singleNodes);
-          issuesArray.push(singleIssue);
+          finalArray.push(singleNode);
         });
       });
     }
-    return issuesArray;
-  } catch (err:any) {
+    console.log('finalArray first and fifth', finalArray[0], finalArray[4]);
+    return finalArray;
+  } catch (err: any) {
     throw new Error(err);
   }
 };
