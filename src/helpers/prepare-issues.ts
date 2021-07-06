@@ -21,7 +21,6 @@ const prepareIssues = (violations: any[], url: string) => {
         });
       });
     }
-    console.log('finalArray first and fifth', finalArray[0], finalArray[4]);
     return finalArray;
   } catch (err: any) {
     throw new Error(err);
