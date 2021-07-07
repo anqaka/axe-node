@@ -1,4 +1,4 @@
-import { AxeConfig } from './axe-config.type'
+import { AxeConfig } from './axe-config.type';
 export type InitConfig = {
   pages: string[] | [];
   title?: string;
@@ -11,4 +11,4 @@ export type InitConfig = {
     height: string;
   };
   selector?: string | null;
-}
+};

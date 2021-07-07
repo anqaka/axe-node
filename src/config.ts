@@ -6,7 +6,6 @@ const config = {
   basicAuth: null,
   axeConfig: {
     reporter: 'v2',
-    noHtml: true
   },
   viewport: {
     width: '1920',

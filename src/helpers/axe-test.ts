@@ -1,18 +1,19 @@
 import { FinalConfig } from './../types/final-config.type';
 import { ResponseObj } from './../types/response-obj.type';
 
-const puppeteer = require('puppeteer');
-const { AxePuppeteer } = require('@axe-core/puppeteer');
+import puppeteer from 'puppeteer';
+import { AxePuppeteer } from '@axe-core/puppeteer';
 
-const axeTest = async (url: string, axeConfig:FinalConfig) => {
+const axeTest = async (url: string, axeConfig: FinalConfig, index: number) => {
   try {
     const browser = await puppeteer.launch({
       args: [`--window-size=${axeConfig.viewport.width},${axeConfig.viewport.height}`],
       defaultViewport: null,
+      waitForInitialPage: true,
+      headless: false,
     });
     const page = await browser.newPage();
     await page.setBypassCSP(true);
-    await page._client.send('Emulation.clearDeviceMetricsOverride');
 
     if (axeConfig.basicAuth) {
       await page.authenticate({
@@ -22,11 +23,12 @@ const axeTest = async (url: string, axeConfig:FinalConfig) => {
     }
 
     await page.goto(url, {
-      waitUntil: 'networkidle0',
+      waitUntil: 'networkidle2',
       timeout: 0,
     });
+    await page.screenshot({ path: `example-${index}.png` });
 
-    let results:ResponseObj;
+    let results: ResponseObj;
     // TO DO: add validation
     if (axeConfig.selector) {
       results = await new AxePuppeteer(page).include(axeConfig.selector).options(axeConfig.axeConfig).analyze();
