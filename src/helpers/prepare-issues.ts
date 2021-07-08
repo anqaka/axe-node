@@ -1,7 +1,8 @@
 import { MetadataObj } from './../types/metadata-obj.type';
 import { IssueObj } from './../types/issue-obj.type';
+import { Page } from './../types/page.type';
 
-const prepareIssues = (violations: any[], url: string) => {
+const prepareIssues = (violations: any[], page: Page) => {
   try {
     const noNodes = ({ nodes, ...rest }) => rest,
       issuesArray: any[] = violations,
@@ -14,7 +15,8 @@ const prepareIssues = (violations: any[], url: string) => {
             id: item.id,
             ...element,
             ...noNodes(item),
-            testedUrl: url,
+            testedUrl: page.url,
+            selector: page.selector,
             status: 'TO DO',
           };
           finalArray.push(singleNode);

@@ -1,6 +1,7 @@
 import * as path from 'path';
 import { InitConfig } from './types/init-config.type';
 import { FinalConfig } from './types/final-config.type';
+import { Page } from './types/page.type';
 import { ResponseObj } from './types/response-obj.type';
 import { AuditObj } from './types/audit-obj.type';
 import axeTest from './helpers/axe-test';
@@ -10,7 +11,7 @@ import writeData from './helpers/write-data';
 // const writeToCsv    = require('./helpers/result-to-csv');
 type testArrayRes = Promise<any> | AuditObj | string;
 
-const mainTest = (customConfig: InitConfig): testArrayRes => {
+const mainTest = function (customConfig: InitConfig): testArrayRes {
   console.log('Hi my favorites accessibility freaks! XD');
   // set date
   const date = new Date().toISOString().slice(0, 16).replace(/\D/g, '');
@@ -23,13 +24,13 @@ const mainTest = (customConfig: InitConfig): testArrayRes => {
   let auditObj: AuditObj;
   // check if results dir exits TODO
 
-  const testSinglePage = async (url: string, index: number) => {
+  const testSinglePage = async (page: Page, index: number) => {
     try {
-      const axeResponse: ResponseObj = await axeTest(url, config, index);
+      const axeResponse: ResponseObj = await axeTest(page, config, index);
       // write resposne to fils
       writeData(JSON.stringify(axeResponse), `${resultsFile}-${index}`, 'json');
       if (axeResponse.violations) {
-        const issueArray: any[] = await prepareIssues(axeResponse.violations, url);
+        const issueArray: any[] = await prepareIssues(axeResponse.violations, page);
         violationsArray = [...violationsArray, ...issueArray];
       } else {
         console.log('there is no violation on the website');

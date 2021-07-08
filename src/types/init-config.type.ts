@@ -1,6 +1,6 @@
 import { AxeConfig } from './axe-config.type';
 export type InitConfig = {
-  pages: string[] | [];
+  pages: { url: string; selector: string }[];
   title?: string;
   fileName?: string;
   resultsDir?: string;

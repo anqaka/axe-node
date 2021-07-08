@@ -1,10 +1,11 @@
+import { Page } from './../types/page.type';
 import { FinalConfig } from './../types/final-config.type';
 import { ResponseObj } from './../types/response-obj.type';
 
 import puppeteer from 'puppeteer';
 import { AxePuppeteer } from '@axe-core/puppeteer';
 
-const axeTest = async (url: string, axeConfig: FinalConfig, index: number) => {
+const axeTest = async (singlePage: Page, axeConfig: FinalConfig, index: number) => {
   try {
     const browser = await puppeteer.launch({
       args: [`--window-size=${axeConfig.viewport.width},${axeConfig.viewport.height}`],
@@ -22,7 +23,7 @@ const axeTest = async (url: string, axeConfig: FinalConfig, index: number) => {
       });
     }
 
-    await page.goto(url, {
+    await page.goto(singlePage.url, {
       waitUntil: 'networkidle2',
       timeout: 0,
     });
@@ -30,8 +31,8 @@ const axeTest = async (url: string, axeConfig: FinalConfig, index: number) => {
 
     let results: ResponseObj;
     // TO DO: add validation
-    if (axeConfig.selector) {
-      results = await new AxePuppeteer(page).include(axeConfig.selector).options(axeConfig.axeConfig).analyze();
+    if (singlePage.selector) {
+      results = await new AxePuppeteer(page).include(singlePage.selector).options(axeConfig.axeConfig).analyze();
     } else {
       results = await new AxePuppeteer(page).options(axeConfig.axeConfig).analyze();
     }
