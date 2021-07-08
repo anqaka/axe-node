@@ -27,7 +27,7 @@ const axeTest = async (singlePage: Page, axeConfig: FinalConfig, index: number) 
       waitUntil: 'networkidle2',
       timeout: 0,
     });
-    await page.screenshot({ path: `example-${index}.png` });
+    await page.screenshot({ path: `${axeConfig.resultsDir}/screenshot-${index}.png` });
 
     let results: ResponseObj;
     // TO DO: add validation
