@@ -1,8 +1,7 @@
-import { MetadataObj } from './../types/metadata-obj.type';
-import { IssueObj } from './../types/issue-obj.type';
-import { Page } from './../types/page.type';
+import { MetadataObj, IssueObj } from './../types/basic-objs.type';
+import { PageConfig } from './../types/configs.type';
 
-const prepareIssues = (violations: any[], page: Page) => {
+const prepareIssues = (violations: any[], page: PageConfig) => {
   try {
     const noNodes = ({ nodes, ...rest }) => rest,
       issuesArray: any[] = violations,

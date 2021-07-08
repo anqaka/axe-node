@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 /**
  *
  * @param {object|array} data - data to write
@@ -6,8 +6,8 @@ const fs = require('fs');
  * @param {string} fileExtension - extension of the file
  *
  */
-const writeData = (data:string, fileName:string, fileExtension:string) => {
-  fs.writeFile(`${fileName}.${fileExtension}`, data, function (err:any) {
+const writeData = (data: string, fileName: string, fileExtension: string) => {
+  fs.writeFile(`${fileName}.${fileExtension}`, data, function (err: any) {
     if (err) return console.log('Error: ', err);
     console.log(`The file was saved as ${fileName}.${fileExtension}!`);
   });

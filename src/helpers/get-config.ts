@@ -1,6 +1,5 @@
 import defaultConfig from './../config';
-import { InitConfig } from './../types/init-config.type';
-import { FinalConfig } from './../types/final-config.type';
+import { InitConfig, FinalConfig } from './../types/configs.type';
 
 const getConfig = (customConfig: InitConfig): FinalConfig => {
   // check if pages are provided

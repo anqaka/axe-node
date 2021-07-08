@@ -1,9 +1,6 @@
 import * as path from 'path';
-import { InitConfig } from './types/init-config.type';
-import { FinalConfig } from './types/final-config.type';
-import { Page } from './types/page.type';
-import { ResponseObj } from './types/response-obj.type';
-import { AuditObj } from './types/audit-obj.type';
+import { PageConfig, InitConfig, FinalConfig } from './types/configs.type';
+import { AuditObj, ResponseObj } from './types/basic-objs.type';
 import axeTest from './helpers/axe-test';
 import getConfig from './helpers/get-config';
 import prepareIssues from './helpers/prepare-issues';
@@ -24,7 +21,7 @@ const mainTest = function (customConfig: InitConfig): testArrayRes {
   let auditObj: AuditObj;
   // check if results dir exits TODO
 
-  const testSinglePage = async (page: Page, index: number) => {
+  const testSinglePage = async (page: PageConfig, index: number) => {
     try {
       const axeResponse: ResponseObj = await axeTest(page, config, index);
       // write resposne to fils

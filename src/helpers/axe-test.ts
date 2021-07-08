@@ -1,11 +1,10 @@
-import { Page } from './../types/page.type';
-import { FinalConfig } from './../types/final-config.type';
-import { ResponseObj } from './../types/response-obj.type';
+import { PageConfig, FinalConfig } from './../types/configs.type';
+import { ResponseObj } from './../types/basic-objs.type';
 
 import puppeteer from 'puppeteer';
 import { AxePuppeteer } from '@axe-core/puppeteer';
 
-const axeTest = async (singlePage: Page, axeConfig: FinalConfig, index: number) => {
+const axeTest = async (singlePage: PageConfig, axeConfig: FinalConfig, index: number) => {
   try {
     const browser = await puppeteer.launch({
       args: [`--window-size=${axeConfig.viewport.width},${axeConfig.viewport.height}`],
