@@ -5,6 +5,7 @@ import axeTest from './helpers/axe-test';
 import getConfig from './helpers/get-config';
 import prepareIssues from './helpers/prepare-issues';
 import writeData from './helpers/write-data';
+import configure from './helpers/configure'
 // const writeToCsv    = require('./helpers/result-to-csv');
 type testArrayRes = Promise<any> | AuditObj | string;
 
@@ -14,7 +15,9 @@ const mainTest = function (customConfig: InitConfig): testArrayRes {
   const date = new Date().toISOString().slice(0, 16).replace(/\D/g, '');
   // get config
   const config: FinalConfig = getConfig(customConfig);
-  console.log(config);
+  console.log('config', config);
+  // create results directory if doesn't exist
+  configure(config);
 
   const resultsFile = path.join(process.cwd(), `${config.resultsDir}/${config.fileName}_${date}`);
   let violationsArray: any[] = [];
@@ -42,7 +45,7 @@ const mainTest = function (customConfig: InitConfig): testArrayRes {
   async function testArray(urlsArray: any[]): Promise<any> {
     try {
       if (urlsArray.length) {
-        console.log("Let' start testing...");
+        console.log('Let\' start testing...');
         await Promise.all(
           urlsArray.map(async (item, index) => {
             await testSinglePage(item, index);

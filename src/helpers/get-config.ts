@@ -6,7 +6,14 @@ const getConfig = (customConfig: InitConfig): FinalConfig => {
   if (!customConfig.pages.length) {
     throw new Error('Please provide at least one url to test');
   }
+
+  const { resultsDir: defaultResultsDir } = defaultConfig;
+  const { resultsDir: customResultsDir } = customConfig;
+
   const config: FinalConfig = Object.assign({}, defaultConfig, customConfig);
+  config.resultsDir = (customResultsDir && customResultsDir !== defaultResultsDir)
+    ? `${defaultResultsDir}/${customResultsDir}`
+    : defaultResultsDir;
   return config;
 };
 
