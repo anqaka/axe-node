@@ -10,7 +10,7 @@ const prepareIssues = (violations: any[], page: PageConfig) => {
       issuesArray.forEach((item: IssueObj) => {
         item.nodes.forEach((element: MetadataObj, index: number) => {
           const singleNode = {
-            uid: `${item.id}-${index}`,
+            uid: `${item.id}-${index}-${Math.random()}`,
             id: item.id,
             ...element,
             ...noNodes(item),
