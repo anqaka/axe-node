@@ -1,4 +1,1 @@
-import mainTest from './main-test';
-
-const testWithAxe = mainTest;
-export default testWithAxe;
+export { default as testWithAxe } from './main-test';
