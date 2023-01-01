@@ -16,10 +16,10 @@
     "lint": "tslint -p tsconfig.json"
   },
   "dependencies": {
-    "@axe-core/puppeteer": "^4.2.2",
+    "@axe-core/puppeteer": "^4.5.2",
     "json-2-csv": "^3.14.1",
     "minimist": "^1.2.5",
-    "puppeteer": "^10.0.0"
+    "puppeteer": "^15.0.0"
   },
   "devDependencies": {
     "@types/node": "^15.12.4",
